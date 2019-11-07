@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.tioeun.a20191107_01_numberbaseballgame.R
 import com.tioeun.a20191107_01_numberbaseballgame.datas.ChatData
+import org.w3c.dom.Text
 
 class ChatAdapter(context: Context, res:Int, list:ArrayList<ChatData>) : ArrayAdapter<ChatData>(context, res, list) {
 
@@ -20,9 +22,16 @@ class ChatAdapter(context: Context, res:Int, list:ArrayList<ChatData>) : ArrayAd
         var tempRow = convertView
 
         if(tempRow == null){
-            tempRow = inf.inflate((R.layout.chat_list_item, null))
+            tempRow = inf.inflate(R.layout.chat_list_item, null)
         }
         var row = tempRow!!
+
+        var data = mList.get(position)
+
+        var contentTxt = row.findViewById<TextView>(R.id.contentTxt)
+
+        contentTxt.text = data.message
+
         return row
     }
 
