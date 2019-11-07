@@ -10,9 +10,12 @@ import kotlin.random.Random
 
 class MainActivity : BaseActivity() {
 
-    var questionNumArray = ArrayList<Int>()
+
     var chatAdapter:ChatAdapter? = null
     var chatList = ArrayList<ChatData>()
+
+    var questionNumArray = ArrayList<Int>()
+    var userINputNumArray = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,14 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    fun checkAnswer(){
+        for (i in 0..2){
+            for(j in 0..2){
+
+            }
+        }
+    }
+
     override fun setupEvents() {
         inputBtn.setOnClickListener {
             var inputNum = inputEdt.text.toString()
@@ -46,7 +57,14 @@ class MainActivity : BaseActivity() {
 
             chatAdapter?.notifyDataSetChanged()
 
+            userINputNumArray.clear()
+            userINputNumArray.add(inputNum.toInt()/100)  // 맨 앞 숫자 추출
+            userINputNumArray.add(inputNum.toInt()/ 10 % 10)
+            userINputNumArray.add(inputNum.toInt() % 10) // 맨 뒤 숫자 추출
+
             chatListView.smoothScrollByOffset(chatList.size-1)
+
+            checkAnswer()
         }
     }
 
